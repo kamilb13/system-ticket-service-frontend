@@ -17,7 +17,6 @@ export async function createTicket(title: string, description: string, category:
             category: category,
         });
         return response.data;
-
     } catch (error) {
         console.error(error);
     }

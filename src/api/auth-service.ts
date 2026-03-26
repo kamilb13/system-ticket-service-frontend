@@ -1,5 +1,6 @@
 import {axiosInstance} from "@/api/axios-instance";
 import {useTokenStore} from "@/stores/token";
+import {getRoleFromToken} from "@/api/jwt-service";
 
 export async function register(username: string, password: string) {
     try {
@@ -18,9 +19,10 @@ export async function login(username: string, password: string) {
             "username": username,
             "password": password,
         });
-
+        const token = response.data.token;
         const tokenStore = useTokenStore();
         tokenStore.setToken(response.data.token);
+        return token;
     } catch (error) {
         console.error(error);
     }
