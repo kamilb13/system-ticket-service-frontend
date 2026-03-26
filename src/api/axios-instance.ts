@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useTokenStore} from "@/stores/token";
+import {useTokenStore} from "@/stores/token-store";
 
 export const axiosInstance = axios.create({
     baseURL: 'http://localhost:8080/api/v1',
@@ -11,7 +11,7 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     async (config) => {
-        const token = useTokenStore().getToken();
+        const token = useTokenStore().token;
         if (token && config.headers) {
             config.headers.Authorization = `Bearer ${token}`;
         }
