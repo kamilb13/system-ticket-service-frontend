@@ -1,10 +1,10 @@
-import LoginScreen from "@/views/LoginScreen.vue";
-import RegisterScreen from "@/views/RegisterScreen.vue";
-import {createRouter, createWebHistory} from "vue-router";
-import TechDashboardScreen from "@/views/TechDashboardScreen.vue";
-import ClientDashboardScreen from "@/views/ClientDashboardScreen.vue";
-import CreateTicketScreen from "@/views/CreateTicketScreen.vue";
-import HomeScreen from "@/views/HomeScreen.vue";
+import LoginScreen from '@/views/LoginScreen.vue';
+import RegisterScreen from '@/views/RegisterScreen.vue';
+import { createRouter, createWebHistory } from 'vue-router';
+import TechDashboardScreen from '@/views/TechDashboardScreen.vue';
+import ClientDashboardScreen from '@/views/ClientDashboardScreen.vue';
+import CreateTicketScreen from '@/views/CreateTicketScreen.vue';
+import HomeScreen from '@/views/HomeScreen.vue';
 
 const routes = [
     { path: '/', name: 'Home', component: HomeScreen, meta: { requiresAuth: false } },
@@ -17,7 +17,7 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes,
 });
 
 // router.beforeEach((to, from, next) => {

@@ -1,6 +1,7 @@
 <script setup>
 import {ref} from "vue";
 import {createTicket} from "@/api/ticket-service.ts";
+import router from "@/router/index.js";
 
 const formData = ref({
   title: '',
@@ -12,6 +13,7 @@ const formData = ref({
 <template>
   <v-form @submit.prevent="async() => {
     await createTicket(formData.title, formData.description, formData.category);
+    await router.push('/client/dashboard');
   }">
     <v-col>
       <v-row>

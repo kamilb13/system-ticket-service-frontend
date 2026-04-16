@@ -36,7 +36,8 @@ onMounted(async () => {
 <style scoped>
 .dashboard {
   display: flex;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 180px);
+  width: calc(100vw - 120px);
   gap: 20px;
   margin-top: 20px;
   margin-bottom: 20px;

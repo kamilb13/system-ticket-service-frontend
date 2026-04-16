@@ -19,7 +19,7 @@ export const useTokenStore = defineStore('token-store', () => {
     const isAuthenticated = computed(() => !!token.value);
 
     // @ts-ignore
-    const role = computed(() => decodedToken.value?.role || "ROLE_CLIENT");
+    const role = computed(() => decodedToken.value?.role) || null;
 
     function setToken(token: string) {
         this.token = token;
@@ -27,7 +27,8 @@ export const useTokenStore = defineStore('token-store', () => {
     }
 
     function clearToken() {
-        this.token.value = "";
+        this.token = null;
+        this.role = null;
         localStorage.removeItem("token");
     }
 
