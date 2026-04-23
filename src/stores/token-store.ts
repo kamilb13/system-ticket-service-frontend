@@ -16,10 +16,7 @@ export const useTokenStore = defineStore('token-store', () => {
         }
     });
 
-    const isAuthenticated = computed(() => !!token.value);
-
-    // @ts-ignore
-    const role = computed(() => decodedToken.value?.role) || null;
+    const role = computed(() => decodedToken.value?.role);
 
     function setToken(token: string) {
         this.token = token;

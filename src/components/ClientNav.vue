@@ -1,6 +1,8 @@
 <script setup>
 import {useTokenStore} from "@/stores/token-store.ts";
 import router from "@/router/index.js";
+import {Role} from "@/types/role.ts";
+
 
 const tokenStore = useTokenStore();
 
@@ -8,13 +10,13 @@ const tokenStore = useTokenStore();
 
 <template>
   <v-container fluid class="nav d-flex justify-end">
-    <v-btn v-if="tokenStore.role === 'ROLE_CLIENT'" @click="async () => {
+    <v-btn v-if="tokenStore.role === Role['Klient'] && tokenStore.token !== null" @click="async () => {
       await router.push('/tickets/create');
   }">Utwórz zgłoszenie
     </v-btn>
     <v-btn v-if="tokenStore.token !== null" @click="async () => {
       console.log(tokenStore.token);
-    if (tokenStore.role === 'ROLE_TECH') {
+    if (tokenStore.role === Role['Technik']) {
        await router.push('/tech/dashboard');
     } else {
       await router.push('/client/dashboard');

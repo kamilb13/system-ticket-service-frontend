@@ -3,6 +3,8 @@ import {login, register} from '@/api/auth-service.ts'
 import {ref} from "vue";
 import router from "@/router/index.js";
 import {getRoleFromToken} from "@/api/jwt-service.ts";
+import {Role} from "@/types/role.ts";
+
 
 const formData = ref({
   username: '',
@@ -15,7 +17,7 @@ const formData = ref({
   <v-form @submit.prevent="async () => {
     await register(formData.username, formData.password);
     const token = await login(formData.username, formData.password);
-    if (getRoleFromToken(token) === 'ROLE_TECH') {
+    if (getRoleFromToken(token) === Role['Technik']) {
       await router.push('/tech/dashboard');
     } else {
       await router.push('/client/dashboard');

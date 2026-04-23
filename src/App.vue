@@ -4,7 +4,7 @@ import ClientNav from "./components/ClientNav.vue";
 
 <template>
   <v-app>
-    <v-app-bar class="nav">
+    <v-app-bar>
       <ClientNav/>
     </v-app-bar>
     <v-main>
