@@ -1,9 +1,9 @@
-import {defineStore} from "pinia";
-import {computed, ref} from "vue";
-import {jwtDecode} from "jwt-decode";
+import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
+import { jwtDecode } from 'jwt-decode';
 
 export const useTokenStore = defineStore('token-store', () => {
-    const token = ref(localStorage.getItem("token") || null);
+    const token = ref(localStorage.getItem('token') || null);
 
     const decodedToken = computed(() => {
         if (!token.value) {
@@ -20,13 +20,13 @@ export const useTokenStore = defineStore('token-store', () => {
 
     function setToken(token: string) {
         this.token = token;
-        localStorage.setItem("token", token);
+        localStorage.setItem('token', token);
     }
 
     function clearToken() {
         this.token = null;
         this.role = null;
-        localStorage.removeItem("token");
+        localStorage.removeItem('token');
     }
 
     return {
@@ -34,6 +34,6 @@ export const useTokenStore = defineStore('token-store', () => {
         role,
         setToken,
         clearToken,
-    }
+    };
 });
 

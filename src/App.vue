@@ -1,16 +1,15 @@
 <script setup>
-import ClientNav from "./components/ClientNav.vue";
+import ClientNav from './components/ClientNav.vue';
 </script>
 
 <template>
   <v-app>
     <v-app-bar>
-      <ClientNav/>
+      <ClientNav />
     </v-app-bar>
     <v-main>
       <v-container class="mt-5">
-        <router-view>
-        </router-view>
+        <router-view />
       </v-container>
     </v-main>
   </v-app>

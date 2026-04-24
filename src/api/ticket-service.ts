@@ -1,4 +1,4 @@
-import {axiosInstance} from "@/api/axios-instance";
+import { axiosInstance } from '@/api/axios-instance';
 
 export async function getTickets() {
     try {

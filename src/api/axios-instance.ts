@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useTokenStore} from "@/stores/token-store";
+import { useTokenStore } from '@/stores/token-store';
 
 export const axiosInstance = axios.create({
     baseURL: 'http://localhost:8080/api/v1',

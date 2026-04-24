@@ -4,11 +4,10 @@ defineProps({
   description: String,
   category: String,
   ticketCreator: String,
-})
+});
 </script>
 
 <template>
-
 </template>
 
 <style scoped>

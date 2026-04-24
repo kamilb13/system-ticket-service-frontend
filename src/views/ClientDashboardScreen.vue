@@ -1,7 +1,7 @@
 <script setup>
-import {getTickets, getTicketsByClient} from "@/api/ticket-service.ts";
-import {onMounted, ref} from "vue";
-import TicketCard from "@/components/TicketCard.vue";
+import { getTicketsByClient } from '@/api/ticket-service.ts';
+import { onMounted, ref } from 'vue';
+import TicketCard from '@/components/TicketCard.vue';
 
 const tickets = ref([]);
 const selectedTicket = ref(null);
@@ -20,13 +20,25 @@ onMounted(async () => {
   <div class="dashboard">
     <div class="sidenav">
       <ul>
-        <li v-for="ticket in tickets" :key="ticket.id" @click="selectedTicket = ticket" class="ticket-item">
-          <TicketCard :title="ticket.title" :description="ticket.description" :category="ticket.category"></TicketCard>
+        <li
+          v-for="ticket in tickets"
+          :key="ticket.id"
+          class="ticket-item"
+          @click="selectedTicket = ticket"
+        >
+          <TicketCard
+            :title="ticket.title"
+            :description="ticket.description"
+            :category="ticket.category"
+          />
         </li>
       </ul>
     </div>
     <div class="main">
-      <div class="ticket-details" v-if="selectedTicket !== null">
+      <div
+        v-if="selectedTicket !== null"
+        class="ticket-details"
+      >
         <p>{{ selectedTicket.title }}</p>
       </div>
     </div>

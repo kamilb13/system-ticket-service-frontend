@@ -3,7 +3,7 @@ defineProps({
   title: String,
   description: String,
   category: String,
-})
+});
 </script>
 
 <template>

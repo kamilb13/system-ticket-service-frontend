@@ -1,8 +1,12 @@
 <script setup>
-import { getTickets, setTicketStatus } from '@/api/ticket-service.ts';
+import { getTickets, getTicketsByClient, setTicketStatus } from '@/api/ticket-service.ts';
 import { onMounted, ref } from 'vue';
 import TicketCard from '@/components/TicketCard.vue';
 import { TicketStatus } from '@/types/ticket-status.ts';
+import { Role } from '@/types/role.ts';
+import { useTokenStore } from '@/stores/token-store.ts';
+
+const store = useTokenStore();
 
 const tickets = ref([]);
 const selectedTicket = ref(null);
@@ -27,7 +31,7 @@ const updateTicketStatus = async () => {
 
 onMounted(async () => {
   try {
-    tickets.value = await getTickets();
+    tickets.value = store.role === Role['Technik'] ? await getTickets() : await getTicketsByClient();
   } catch (error) {
     console.error(error);
   }
