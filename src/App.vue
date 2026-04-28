@@ -1,11 +1,11 @@
 <script setup>
-import ClientNav from './components/ClientNav.vue';
+import TabNav from './components/TabNav.vue';
 </script>
 
 <template>
   <v-app>
     <v-app-bar>
-      <ClientNav />
+      <TabNav />
     </v-app-bar>
     <v-main>
       <v-container class="mt-5">

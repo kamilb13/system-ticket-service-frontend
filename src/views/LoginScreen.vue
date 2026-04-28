@@ -2,26 +2,28 @@
 import { login } from '@/api/auth-service.ts';
 import { ref } from 'vue';
 import router from '@/router/index.js';
-import { getRoleFromToken } from '@/api/jwt-service.ts';
-import { Role } from '@/types/role.ts';
+import { useTokenStore } from '@/stores/token-store.ts';
+
+const tokenStore = useTokenStore();
 
 const formData = ref({
   username: '',
   password: '',
 });
+
+const handleLogin = async () => {
+  const token = await login(formData.value.username, formData.value.password);
+  tokenStore.setToken(token);
+  if (tokenStore.role === 'ROLE_TECH') {
+    await router.push('/tech/dashboard');
+  } else {
+    await router.push('/client/dashboard');
+  }
+};
 </script>
 
 <template>
-  <v-form
-    @submit.prevent="async() => {
-      const token = await login(formData.username, formData.password);
-      if (getRoleFromToken(token) === Role['Technik']) {
-        await router.push('/tech/dashboard');
-      } else {
-        await router.push('/client/dashboard');
-      }
-    }"
-  >
+  <v-form @submit.prevent="handleLogin">
     <v-col>
       <v-row>
         <v-text-field

@@ -1,30 +1,29 @@
 <script setup>
-import { login, register } from '@/api/auth-service.ts';
+import { register } from '@/api/auth-service.ts';
 import { ref } from 'vue';
 import router from '@/router/index.js';
-import { getRoleFromToken } from '@/api/jwt-service.ts';
-import { Role } from '@/types/role.ts';
-
 
 const formData = ref({
   username: '',
   password: '',
 });
 
+const handleRegister = async () => {
+  try {
+    await register(formData.value.username, formData.value.password);
+    await router.push({
+      path: '/login',
+      query: { registered: 'true' },
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 </script>
 
 <template>
-  <v-form
-    @submit.prevent="async () => {
-      await register(formData.username, formData.password);
-      const token = await login(formData.username, formData.password);
-      if (getRoleFromToken(token) === Role['Technik']) {
-        await router.push('/tech/dashboard');
-      } else {
-        await router.push('/client/dashboard');
-      }
-    }"
-  >
+  <v-form @submit.prevent="handleRegister">
     <v-col>
       <v-row>
         <v-text-field

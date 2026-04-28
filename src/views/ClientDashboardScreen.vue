@@ -2,6 +2,7 @@
 import { getTicketsByClient } from '@/api/ticket-service.ts';
 import { onMounted, ref } from 'vue';
 import TicketCard from '@/components/TicketCard.vue';
+import TicketDetails from '@/components/TicketDetails.vue';
 
 const tickets = ref([]);
 const selectedTicket = ref(null);
@@ -39,7 +40,12 @@ onMounted(async () => {
         v-if="selectedTicket !== null"
         class="ticket-details"
       >
-        <p>{{ selectedTicket.title }}</p>
+        <TicketDetails
+          :title="ticket.title"
+          :description="ticket.description"
+          :category="ticket.category"
+          :ticket-creator="ticket.ticketCreator"
+        />
       </div>
     </div>
   </div>

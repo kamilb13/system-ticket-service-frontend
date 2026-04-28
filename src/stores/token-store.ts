@@ -1,31 +1,33 @@
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { computed, ComputedRef, ref } from 'vue';
 import { jwtDecode } from 'jwt-decode';
+import { CustomJwtPayload } from '@/types/jwt-payload';
 
 export const useTokenStore = defineStore('token-store', () => {
     const token = ref(localStorage.getItem('token') || null);
 
-    const decodedToken = computed(() => {
+    const decodedToken: ComputedRef<CustomJwtPayload | null> = computed(() => {
         if (!token.value) {
             return null;
         }
+
         try {
-            return jwtDecode(token.value);
+            return jwtDecode<CustomJwtPayload>(token.value);
         } catch (error) {
             console.error(error);
+            return null;
         }
     });
 
     const role = computed(() => decodedToken.value?.role);
 
-    function setToken(token: string) {
-        this.token = token;
-        localStorage.setItem('token', token);
+    function setToken(newToken: string) {
+        token.value = newToken;
+        localStorage.setItem('token', newToken);
     }
 
     function clearToken() {
-        this.token = null;
-        this.role = null;
+        token.value = null;
         localStorage.removeItem('token');
     }
 

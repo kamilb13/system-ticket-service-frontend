@@ -1,7 +1,6 @@
 <script setup>
 import { useTokenStore } from '@/stores/token-store.ts';
 import router from '@/router/index.js';
-import { Role } from '@/types/role.ts';
 
 const tokenStore = useTokenStore();
 
@@ -13,7 +12,7 @@ const tokenStore = useTokenStore();
     class="nav d-flex justify-end"
   >
     <v-btn
-      v-if="tokenStore.role === Role['Klient'] && tokenStore.token !== null"
+      v-if="tokenStore.role === 'ROLE_CLIENT' && tokenStore.token !== null"
       @click="async () => {
         await router.push('/tickets/create');
       }"
@@ -23,8 +22,7 @@ const tokenStore = useTokenStore();
     <v-btn
       v-if="tokenStore.token !== null"
       @click="async () => {
-        console.log(tokenStore.token);
-        if (tokenStore.role === Role['Technik']) {
+        if (tokenStore.role === 'ROLE_TECH') {
           await router.push('/tech/dashboard');
         } else {
           await router.push('/client/dashboard');
@@ -39,7 +37,6 @@ const tokenStore = useTokenStore();
           await router.push('/login');
         } else {
           tokenStore.clearToken();
-          console.log(tokenStore.token);
           await router.push('/');
         }
       }"

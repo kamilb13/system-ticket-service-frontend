@@ -39,3 +39,24 @@ export async function createTicket(title: string, description: string, category:
         console.error(error);
     }
 }
+
+export async function addComment(ticketId: number, comment: string) {
+    try {
+        const response = await axiosInstance.post('/tickets/comments', {
+            ticketId: ticketId,
+            comment: comment,
+        });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export async function getComments(ticketId: number) {
+    try {
+        const response = await axiosInstance.get(`/tickets/${ticketId}/comments`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

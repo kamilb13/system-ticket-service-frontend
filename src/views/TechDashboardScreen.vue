@@ -3,6 +3,7 @@ import { getTickets, setTicketStatus } from '@/api/ticket-service.ts';
 import { onMounted, ref } from 'vue';
 import TicketCard from '@/components/TicketCard.vue';
 import { TicketStatus } from '@/types/ticket-status.ts';
+import TicketDetails from '@/components/TicketDetails.vue';
 
 const tickets = ref([]);
 const selectedTicket = ref(null);
@@ -80,6 +81,12 @@ onMounted(async () => {
             Zatwierdź
           </v-btn>
         </v-form>
+        <TicketDetails
+          :title="ticket.title"
+          :description="ticket.description"
+          :category="ticket.category"
+          :ticket-creator="ticket.ticketCreator"
+        />
       </div>
     </div>
   </div>
