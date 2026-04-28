@@ -14,11 +14,7 @@ const formData = ref({
 const handleLogin = async () => {
   const token = await login(formData.value.username, formData.value.password);
   tokenStore.setToken(token);
-  if (tokenStore.role === 'ROLE_TECH') {
-    await router.push('/tech/dashboard');
-  } else {
-    await router.push('/client/dashboard');
-  }
+  await router.push('/dashboard');
 };
 </script>
 

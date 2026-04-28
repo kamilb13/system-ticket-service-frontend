@@ -14,7 +14,7 @@ const formData = ref({
   <v-form
     @submit.prevent="async() => {
       await createTicket(formData.title, formData.description, formData.category);
-      await router.push('/client/dashboard');
+      await router.push('/dashboard');
     }"
   >
     <v-col>

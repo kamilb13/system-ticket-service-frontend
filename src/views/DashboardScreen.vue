@@ -4,6 +4,7 @@ import { onMounted, ref } from 'vue';
 import TicketCard from '@/components/TicketCard.vue';
 import { TicketStatus } from '@/types/ticket-status.ts';
 import { useTokenStore } from '@/stores/token-store.ts';
+import TicketDetails from '@/components/TicketDetails.vue';
 
 const tokenStore = useTokenStore();
 
@@ -61,8 +62,10 @@ onMounted(async () => {
         v-if="selectedTicket !== null"
         class="ticket-details"
       >
-        <v-form @submit.prevent="updateTicketStatus">
-          <p>{{ selectedTicket.title }}</p>
+        <v-form
+          v-if="tokenStore.role === 'ROLE_TECH'"
+          @submit.prevent="updateTicketStatus"
+        >
           <v-menu>
             <template #activator="{ props }">
               <v-btn v-bind="props">
@@ -83,6 +86,12 @@ onMounted(async () => {
             Zatwierdź
           </v-btn>
         </v-form>
+        <TicketDetails
+          :title="selectedTicket.title"
+          :description="selectedTicket.description"
+          :category="selectedTicket.category"
+          :ticket-creator="selectedTicket.ticketCreator"
+        />
       </div>
     </div>
   </div>

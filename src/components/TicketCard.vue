@@ -1,8 +1,17 @@
 <script setup>
 defineProps({
-  title: String,
-  description: String,
-  category: String,
+  title: {
+    type: String,
+    default: 'Tytuł zgłoszenia',
+  },
+  description: {
+    type: String,
+    default: 'Opis zgłoszenia',
+  },
+  category: {
+    type: String,
+    default: 'Kategoria zgłoszenia',
+  },
 });
 </script>
 

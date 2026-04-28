@@ -22,11 +22,7 @@ const tokenStore = useTokenStore();
     <v-btn
       v-if="tokenStore.token !== null"
       @click="async () => {
-        if (tokenStore.role === 'ROLE_TECH') {
-          await router.push('/tech/dashboard');
-        } else {
-          await router.push('/client/dashboard');
-        }
+        await router.push('/dashboard');
       }"
     >
       Dashboard

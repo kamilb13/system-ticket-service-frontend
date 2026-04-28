@@ -1,27 +1,31 @@
 <script setup>
 defineProps({
-  title: String,
-  description: String,
-  category: String,
-  ticketCreator: String,
+  title: {
+    type: String,
+    default: 'Tytuł zgłoszenia',
+  },
+  description: {
+    type: String,
+    default: 'Opis zgłoszenia',
+  },
+  category: {
+    type: String,
+    default: 'Kategoria zgłoszenia',
+  },
+  ticketCreator: {
+    type: String,
+    default: 'Zgłaszający',
+  },
 });
 </script>
 
 <template>
-  <v-table>
-    <tr>
-      <td>Tytuł zgłoszenia:</td>
-      <td>{{ title }}</td>
-    </tr>
-    <tr>
-      <td>Opis zgłoszenia:</td>
-      <td>{{ description }}</td>
-    </tr>
-    <tr>
-      <td>Zgłaszający:</td>
-      <td>{{ ticketCreator }}</td>
-    </tr>
-  </v-table>
+  <v-card variant="outlined">
+    <v-card-title>{{ title }}</v-card-title>
+    <v-card-subtitle>{{ description }}</v-card-subtitle>
+    <v-card-text>{{ category }}</v-card-text>
+    <v-card-text>{{ ticketCreator }}</v-card-text>
+  </v-card>
 </template>
 
 <style scoped>
