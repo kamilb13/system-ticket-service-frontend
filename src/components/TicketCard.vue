@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     default: 'Tytuł zgłoszenia',
@@ -17,9 +17,9 @@ defineProps({
 
 <template>
   <v-card variant="outlined">
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-subtitle>{{ description }}</v-card-subtitle>
-    <v-card-text>{{ category }}</v-card-text>
+    <v-card-title>{{ props.title }}</v-card-title>
+    <v-card-subtitle>{{ props.description }}</v-card-subtitle>
+    <v-card-text>{{ props.category }}</v-card-text>
   </v-card>
 </template>
 

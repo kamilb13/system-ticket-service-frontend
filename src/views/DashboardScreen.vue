@@ -29,9 +29,24 @@ const updateTicketStatus = async () => {
   }
 };
 
+const fetchTickets = async () => {
+  tickets.value = tokenStore.role === 'ROLE_TECH' ? await getTickets() : await getTicketsByClient();
+};
+
+const onCommentAdded = async () => {
+  const selectedTicketId = selectedTicket.value.id;
+  await fetchTickets();
+  if (selectedTicketId !== null) {
+    const updatedTicket = tickets.value.find(t => t.id === selectedTicketId);
+    if (updatedTicket) {
+      selectTicket(updatedTicket);
+    }
+  }
+};
+
 onMounted(async () => {
   try {
-    tickets.value = tokenStore.role === 'ROLE_TECH' ? await getTickets() : await getTicketsByClient();
+    await fetchTickets();
   } catch (error) {
     console.error(error);
   }
@@ -87,10 +102,13 @@ onMounted(async () => {
           </v-btn>
         </v-form>
         <TicketDetails
+          :id="selectedTicket.id"
           :title="selectedTicket.title"
           :description="selectedTicket.description"
           :category="selectedTicket.category"
           :ticket-creator="selectedTicket.ticketCreator"
+          :comments="selectedTicket.comments"
+          @comment-added="onCommentAdded"
         />
       </div>
     </div>
@@ -111,7 +129,7 @@ onMounted(async () => {
 
 .sidenav {
   width: 400px;
-  border: 1px solid #555;
+  border: 1px solid #ffffff;
   border-radius: 10px;
   padding: 20px;
   overflow-y: auto;
@@ -127,7 +145,7 @@ ul {
   display: flex;
   flex: 1;
   flex-direction: column;
-  border: 1px solid #555;
+  border: 1px solid #ffffff;
   border-radius: 10px;
   padding: 20px;
   overflow: hidden;

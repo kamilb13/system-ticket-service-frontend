@@ -1,5 +1,13 @@
 <script setup>
-defineProps({
+import { useTokenStore } from '@/stores/token-store.ts';
+import { addComment } from '@/api/ticket-service.ts';
+import { ref } from 'vue';
+
+const props = defineProps({
+  id: {
+    type: Number,
+    default: 1,
+  },
   title: {
     type: String,
     default: 'Tytuł zgłoszenia',
@@ -16,16 +24,56 @@ defineProps({
     type: String,
     default: 'Zgłaszający',
   },
+  comments: {
+    type: Array,
+    default: () => [],
+  },
 });
+
+const emit = defineEmits(['comment-added']);
+
+const tokenStore = useTokenStore();
+
+const submitComment = async () => {
+  try {
+    await addComment(props.id, newComment.value);
+    newComment.value = '';
+    emit('comment-added');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const newComment = ref('');
 </script>
 
 <template>
-  <v-card variant="outlined">
-    <v-card-title>{{ title }}</v-card-title>
-    <v-card-subtitle>{{ description }}</v-card-subtitle>
-    <v-card-text>{{ category }}</v-card-text>
-    <v-card-text>{{ ticketCreator }}</v-card-text>
-  </v-card>
+  <p>Zgłaszający: {{ props.ticketCreator }}</p>
+  <p>Kategoria: {{ props.category }}</p>
+  <p>Tytuł:{{ props.title }}</p>
+  <p>Opis: {{ props.description }}</p>
+  <ul>
+    <li
+      v-for="comment in props.comments"
+      :key="comment.id"
+    >
+      Komentarz: {{ comment.commentContent }}
+    </li>
+  </ul>
+
+  <v-form
+    v-if="tokenStore.role === 'ROLE_TECH'"
+    @submit.prevent="submitComment"
+  >
+    <v-text-field
+      v-model="newComment"
+      label="Nowy komentarz"
+      type="text"
+    />
+    <v-btn type="submit">
+      Dodaj
+    </v-btn>
+  </v-form>
 </template>
 
 <style scoped>
