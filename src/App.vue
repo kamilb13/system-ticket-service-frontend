@@ -8,7 +8,10 @@ import TabNav from './components/TabNav.vue';
       <TabNav />
     </v-app-bar>
     <v-main>
-      <v-container class="mt-5">
+      <v-container
+        fluid
+        class="mt-5"
+      >
         <router-view />
       </v-container>
     </v-main>

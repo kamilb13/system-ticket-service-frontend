@@ -11,10 +11,7 @@ const formData = ref({
 const handleRegister = async () => {
   try {
     await register(formData.value.username, formData.value.password);
-    await router.push({
-      path: '/login',
-      query: { registered: 'true' },
-    });
+    await router.push('/login');
   } catch (error) {
     console.error(error);
   }
