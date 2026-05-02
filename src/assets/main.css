@@ -1,9 +1,9 @@
 @import './base.css';
 
 #app {
-  /*margin: 0 auto;*/
   font-weight: normal;
-  height: 100vh;
+  /*height: 100vh;*/
+  /*height: 100%;*/
   width: 100%;
   padding: 0;
 }
@@ -14,10 +14,4 @@ a,
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
   padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
 }

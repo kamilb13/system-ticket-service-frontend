@@ -51,12 +51,3 @@ export async function addComment(ticketId: number, comment: string) {
         console.error(error);
     }
 }
-
-export async function getComments(ticketId: number) {
-    try {
-        const response = await axiosInstance.get(`/tickets/${ticketId}/comments`);
-        return response.data;
-    } catch (error) {
-        console.error(error);
-    }
-}
