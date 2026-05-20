@@ -14,6 +14,7 @@ export default defineConfig (
             'comma-dangle': ['error', 'always-multiline'],
             'semi': ['error', 'always'],
             'quotes': ['error', 'single'],
+            '@typescript-eslint/no-explicit-any': ['off'],
         },
         languageOptions: {
             sourceType: 'module',
