@@ -50,17 +50,19 @@ const newComment = ref('');
 <template>
   <p>Zgłaszający: {{ props.ticketCreator }}</p>
   <p>Kategoria: {{ props.category }}</p>
-  <p>Tytuł:{{ props.title }}</p>
+  <p>Tytuł: {{ props.title }}</p>
   <p>Opis: {{ props.description }}</p>
+  <p>Komentarze:</p>
   <ul>
     <li
       v-for="comment in props.comments"
       :key="comment.id"
     >
-      Komentarz: {{ comment.commentContent }}
+      {{ comment.commentContent }}
     </li>
   </ul>
 
+  <br>
   <v-form
     v-if="tokenStore.role === 'ROLE_TECH'"
     @submit.prevent="submitComment"

@@ -22,22 +22,28 @@ const formData = ref({
         <v-text-field
           v-model="formData.title"
           label="Tytuł zgłoszenia"
+          class="px-5"
         />
       </v-row>
       <v-row>
         <v-text-field
           v-model="formData.description"
           label="Opis zgłoszenia"
+          class="px-5"
         />
       </v-row>
       <v-row>
         <v-text-field
           v-model="formData.category"
           label="Kategoria zgłoszenia"
+          class="px-5"
         />
       </v-row>
-      <v-row>
-        <v-btn type="submit">
+      <v-row justify="center">
+        <v-btn
+          type="submit"
+          class="px-8 py-4"
+        >
           Utwórz zgłoszenie
         </v-btn>
       </v-row>

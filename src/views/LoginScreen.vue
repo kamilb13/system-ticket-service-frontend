@@ -25,6 +25,7 @@ const handleLogin = async () => {
         <v-text-field
           v-model="formData.username"
           label="Nazwa użytkownika"
+          class="px-5"
         />
       </v-row>
       <v-row>
@@ -32,15 +33,22 @@ const handleLogin = async () => {
           v-model="formData.password"
           type="password"
           label="Hasło"
+          class="px-5"
         />
       </v-row>
-      <v-row>
-        <v-btn type="submit">
+      <v-row justify="center">
+        <v-btn
+          type="submit"
+          class="px-8 py-4"
+        >
           Zaloguj
         </v-btn>
       </v-row>
-      <v-row>
-        <v-btn to="/register">
+      <v-row justify="center">
+        <v-btn
+          to="/register"
+          class="px-8 py-4"
+        >
           Nie masz konta? Zarejestruj się
         </v-btn>
       </v-row>

@@ -97,10 +97,13 @@ onMounted(async () => {
               </v-list-item>
             </v-list>
           </v-menu>
-          <v-btn type="submit">
+          <v-btn
+            type="submit"
+          >
             Zatwierdź
           </v-btn>
         </v-form>
+        <br>
         <TicketDetails
           :id="selectedTicket.id"
           :title="selectedTicket.title"
